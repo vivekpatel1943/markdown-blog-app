@@ -1,21 +1,103 @@
-<!-- admin/crud.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin CRUD Page</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin-top: 50px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            font-weight: bold;
+        }
+        .btn-new-article {
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+        /* Article List Styling */
+        .article-list {
+            list-style: none;
+            padding: 0;
+        }
+        .article-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .article-item:last-child {
+            border-bottom: none;
+        }
+        .article-title {
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #495057;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        /* Button Styling */
+        .btn {
+            font-weight: bold;
+            border-radius: 5px;
+            padding: 5px 15px;
+        }
+        .btn-edit {
+            background-color: #17a2b8;
+            color: #fff;
+        }
+        .btn-edit:hover {
+            background-color: #138496;
+        }
+        .btn-delete {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        .btn-delete:hover {
+            background-color: #c82333;
+        }
+    </style>
 </head>
 <body>
-    <h1>Manage Articles</h1>
-    <ul>
-        <a href="/articles/new" class="btn btn-success" style="border: 1px,solid,black;">New Article</a>
-        <% articles.forEach(article => { %>
-            <li><%= article.title %> - <a href="/articles/edit/<%= article.id %>">Edit</a> |   <form action="/articles/<%= article.id %>?_method=DELETE" method="POST">
-                <button type="submit" class="btn btn-danger">Delete</button>
-            </form></li>
-        <% }) %>
-    </ul>
-    <!-- Add more CRUD functionality as needed -->
+    <div class="container">
+        <h1>Manage Articles</h1>
+        <a href="/articles/new" class="btn btn-success btn-new-article">+ New Article</a>
+        
+        <ul class="article-list">
+            <% articles.forEach(article => { %>
+                <li class="article-item">
+                    <span class="article-title"><%= article.title %></span>
+                    <div class="action-buttons">
+                        <a href="/articles/edit/<%= article.id %>" class="btn btn-edit">Edit</a>
+                        <form action="/articles/<%= article.id %>?_method=DELETE" method="POST" style="display: inline;">
+                            <button type="submit" class="btn btn-delete">Delete</button>
+                        </form>
+                    </div>
+                </li>
+            <% }) %>
+        </ul>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+
