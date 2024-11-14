@@ -1,0 +1,21 @@
+<!-- admin/crud.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin CRUD Page</title>
+</head>
+<body>
+    <h1>Manage Articles</h1>
+    <ul>
+        <a href="/articles/new" class="btn btn-success" style="border: 1px,solid,black;">New Article</a>
+        <% articles.forEach(article => { %>
+            <li><%= article.title %> - <a href="/articles/edit/<%= article.id %>">Edit</a> |   <form action="/articles/<%= article.id %>?_method=DELETE" method="POST">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form></li>
+        <% }) %>
+    </ul>
+    <!-- Add more CRUD functionality as needed -->
+</body>
+</html>
