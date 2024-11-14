@@ -10,7 +10,8 @@ const app = express();
 
 const port = 5000;
 
-mongoose.connect('mongodb+srv://vivekpatel:X9CSYGQ5arKWqTTj@cluster2.a9wrh.mongodb.net/',{
+const mongo_uri = process.env.MONGO_URI;
+mongoose.connect(mongo_uri,{
     useNewUrlParser:true,
     useUnifiedTopology:true
 })
