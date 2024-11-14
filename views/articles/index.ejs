@@ -4,41 +4,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <title>Document</title>
+    <title>Blogs by Krishna Chandravanshi</title>
+    <style>
+        /* General Styling */
+        body {
+            background-color: #f4f6f9;
+            font-family: 'Open Sans', sans-serif;
+        }
+        h3 {
+            font-family: 'Merriweather', serif;
+            font-size: 2rem;
+            text-align: center;
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* Card Styling */
+        .card {
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+        .card-body {
+            padding: 25px;
+        }
+        .card-title {
+            font-family: 'Merriweather', serif;
+            font-size: 1.75rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: #888;
+            margin-bottom: 10px;
+        }
+        .card-description {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Button Styling */
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: #fff;
+            border-radius: 8px;
+            padding: 8px 20px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #0056b3;
+        }
+    </style>
 </head>
 
 <body>
     <div class="container">
-        <h1 class="mb-4 ">
-            Blog Articles
-        </h1>
-        <!-- <a href="/articles/new" class="btn btn-success" style="border: 1px,solid,black;">New Article</a> -->
-
+        <h3>Blogs by Krishna Chandravanshi</h3>
+        
+        <!-- Blog Cards Section -->
         <% articles.forEach((article) => { %>
             <div class="card mt-4">
                 <div class="card-body">
-                    <h4 class="card-title"><%= article.title  %></h4>
-                    <div class="card-subtitle text-muted mb-2">
-                        <%= article.createdAt.toLocaleDateString() %>
+                    <h4 class="card-title"><%= article.title %></h4>
+                    <div class="card-subtitle mb-2">
+                        <i class="far fa-calendar-alt"></i> <%= article.createdAt.toLocaleDateString() %>
                     </div>
-                    <div class="card-description mb-2">
-                        <%= article.description  %>
+                    <div class="card-description mb-3">
+                        <%= article.description %>
                     </div>
                     <a href="/articles/<%= article.slug %>" class="btn btn-primary">Read More</a>
-                    <!-- <form action="/articles/<%= article.id %>?_method=DELETE" method="POST">
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form> -->
                 </div>
-                
-              
-
             </div>
-
-            <% }) %>
+        <% }) %>
     </div>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
