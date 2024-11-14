@@ -4,29 +4,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400&display=swap" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <title>Document</title>
+    <title><%= article ? article.title : "Article Not Found" %></title>
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Open Sans', sans-serif;
+        }
+        .article-container {
+            margin-top: 50px;
+            padding: 30px;
+            background-color: rgb(16, 246, 208);
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .article-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+        }
+        .article-date {
+            font-size: 0.9rem;
+            color: #565c61;
+        }
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+        .not-found {
+            color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
 <body>
-    <% if(article) { %>
-        <div class="container">
-            <h1 class="mb-1"><%= article.title %></h1>
-            <div class="text-muted mb-2">
-                <%= article.createdAt.toLocaleDateString() %>
+    <div class="container">
+        <% if(article) { %>
+            <div class="article-container">
+                <h1 class="article-title mb-3"><%= article.title %></h1>
+                <div class="article-date mb-4">
+                    <span><%= article.createdAt.toLocaleDateString() %></span>
+                </div>
+                <a href="/" class="btn btn-secondary mb-3">All Articles</a>
+                
+                <!-- Article Content -->
+                <div style="font-size: medium;"><%- article.sanitizedHtml %></div>
             </div>
-            <a href="/" class="btn btn-secondary">All Articles</a>
-            <!-- <a href="/articles/edit/<%= article.id %>" class="btn btn-info">Edit</a> -->
-    
-            <div><%- article.sanitizedHtml %></div>
-            
-        </div>
-        <% }else{ %>
-            <h1>Article not found</h1>
-            <% } %>
-   
+        <% } else { %>
+            <div class="text-center mt-5">
+                <h1 class="not-found">Article Not Found</h1>
+                <a href="/" class="btn btn-primary mt-3">Back to Home</a>
+            </div>
+        <% } %>
+    </div>
 
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <div class="footer">
+        &copy; <%= new Date().getFullYear() %> https://markdown-blog-app.onrender.com/. All rights reserved.
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
+
